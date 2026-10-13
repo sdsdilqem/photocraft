@@ -167,6 +167,8 @@ mod control_port_tests {
 fn main() -> eframe::Result {
     // First, so the panic hook and every start-up warning are recorded (`logging`).
     let logger = logging::install();
+    // Stop here, with a message, unless this computer has a valid license (`craft-license`).
+    craft_license::enforce("PhotoCraft");
     crash_guard::install_hook();
     // The system font scan can take seconds (minutes on some Macs): run it off the UI thread.
     photocraft_ui_egui::type_tool::warm_fonts();
